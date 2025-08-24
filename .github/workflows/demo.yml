@@ -33,6 +33,8 @@ jobs:
           for file in dist/assets/*js; do
             echo "script-file=$file" >> $GITHUB_OUTPUT
           done
+      - name: Use output
+        run: "echo 'the output is: ${{ steps.publish.outputs.script-file }}'"
       - name: Upload File
         uses: actions/upload-artifact@v4
         with:
@@ -48,5 +50,7 @@ jobs:
           name: build-output
       - name: Output content
         run: ls
+      - name: ouput file name
+        run: "echo 'file name: ${{ needs.build.outputs.scritp-file }}' "
       - name: Deploy
         run: echo "Deploying..."
